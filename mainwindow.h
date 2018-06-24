@@ -22,6 +22,8 @@ private slots:
     void durationChanged(qint64 dur);
     //播放进度改变
     void posChanged(qint64 pos);
+    void on_btnstart_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->mplayer=new QMediaPlayer();
     this->mplayer->setMedia(QUrl::fromLocalFile("D://CloudMusic/薛之谦 - 肆无忌惮.mp3"));
     this->mplayer->play();
+    this->ui->btnstart->setText("停止");
     connect(this->mplayer,SIGNAL(durationChanged(qint64)),this,SLOT(durationChanged(qint64)));
     connect(this->mplayer,SIGNAL(positionChanged(qint64)),this,SLOT(posChanged(qint64)));
 }
@@ -37,4 +38,17 @@ void MainWindow::durationChanged(qint64 dur)
 void MainWindow::posChanged(qint64 pos)
 {
    this->ui->progressBar->setValue(pos);
+}
+
+void MainWindow::on_btnstart_clicked()
+{
+    if(this->ui->btnstart->text()=="停止")
+    {    this->mplayer->stop();
+      this->ui->btnstart->setText("播放");
+    }else{
+        this->mplayer->play();
+              this->ui->btnstart->setText("停止");
+
+    }
+
 }
